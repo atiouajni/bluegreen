@@ -30,7 +30,7 @@ Thanks to this basic application, you will be able to demontrate some features l
 
 # Setup
 
-No setup is needed to run bluegreen application alone. Il you want to add other features, please check repositories bluegreen-*.
+No setup is needed to run bluegreen application alone. Il you want to add other features, please check bluegreen-* repositories.
 
 # Installation
 In this section, if a new feature requires an installation procedure, it will be included in a different paragraph.
