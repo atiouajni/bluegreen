@@ -1,0 +1,37 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: bluegreen
+  labels:
+    app: bluegreen
+  namespace: bluegreen
+spec:
+  failedBuildsHistoryLimit: 5
+  output:
+    to:
+      kind: ImageStreamTag
+      name: bluegreen:latest
+  runPolicy: Serial
+  source:
+    contextDir: src/bluegreen-php
+    git:
+      uri: https://github.com/atiouajni/bluegreen
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: php:latest
+        namespace: openshift
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: fLw4DRqg-KDotMdAzbKN
+    type: GitHub
+  - generic:
+      secret: m8VtljB-SLDML7HT2RBs
+    type: Generic
+  - type: ConfigChange
+  - imageChange:
+    type: ImageChange
