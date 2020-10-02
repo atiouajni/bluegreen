@@ -52,7 +52,7 @@ oc new-project bluegreen
 **3 - Create bluegreen resources**
 
 ```shell
-oc apply -f openshift-manifests/php/
+oc apply -f openshift-manifests/bluegreen-php/
 ```
 
 **4 - Check building and deploying stages**
