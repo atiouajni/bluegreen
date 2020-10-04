@@ -95,7 +95,10 @@ watch -p ./respy --c 10 --n 100 --u http://$BLUEGREEN_URL/
 
 **You can enable Horizontal Pod Autoscaling (HPA)**
 ```shell
-oc autoscale dc/frontend --min 1 --max 10 --cpu-percent=30
+#To enable autoscaling, we need to define a cpu range before
+oc set resources dc bluegreen --requests=cpu=60m --limits=cpu=100m
+
+oc autoscale dc/bluegreen --min 1 --max 10 --cpu-percent=30
 ```
 # Cleanup
 
