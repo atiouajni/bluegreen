@@ -98,7 +98,11 @@ watch -p ./respy --c 10 --n 100 --u http://$BLUEGREEN_URL/
 #To enable autoscaling, we need to define a cpu range before
 oc set resources dc bluegreen --requests=cpu=60m --limits=cpu=100m
 
+#Enable autoscaling
 oc autoscale dc/bluegreen --min 1 --max 10 --cpu-percent=30
+
+#Watch how the Deployment will scale automatically (more Pods should appear)
+watch -p ./respy --c 10 --n 100 --u http://$BLUEGREEN_URL/
 ```
 # Cleanup
 
