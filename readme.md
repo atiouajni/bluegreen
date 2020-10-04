@@ -93,6 +93,10 @@ watch -p ./respy --c 10 --n 100 --u http://$BLUEGREEN_URL/
 ```
 ![Screenshot of percentage distribution](./docs/img/podname-blue-green-50-50.png)
 
+**You can enable Horizontal Pod Autoscaling (HPA)**
+```shell
+oc autoscale dc/frontend --min 1 --max 10 --cpu-percent=30
+```
 # Cleanup
 
 ```shell
