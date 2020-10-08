@@ -82,9 +82,30 @@ oc set env dc/bluegreen COLOR=green
 ```
 Open a web browser and verify that the color is green now. 
 
-**You can demonstrate the rolling deployment strategy and the default load balancing strategy**
-We will increase the number of replicas of our bluegreen application. 
+**You can demonstrate the rolling deployment strategy**
+
+First, We will increase the number of replicas of our bluegreen application. Then, we will build and deploy a new version of our app.
+
 ```shell
+#Scale the number of Pods
+oc scale --replicas=4 dc/bluegreen
+
+#Build a new image
+oc patch bc bluegreen --type='json' -p='[{"op": "replace", "path": "/spec/output/to/name", "value":"bluegreen:v2"}]'
+oc start-build bluegreen --follow
+
+#Set a new image. This will automatically trigger a new deployment
+oc set image dc/bluegreen bluegreen=bluegreen/bluegreen:v2
+
+#Watch how the rolling deployment will slowly replaces instances of the previous version 
+oc rollout status dc/bluegreen
+```
+![Screenshot of rolling deployment](./docs/img/rolling-deployment.gif)
+
+**You can demonstrate the default load balancing strategy**
+
+```shell
+#Scale the number of Pods
 oc scale --replicas=2 dc/bluegreen
 
 #Check the percentage distribution
