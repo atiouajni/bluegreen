@@ -102,6 +102,8 @@ oc rollout status dc/bluegreen
 ```
 ![Screenshot of rolling deployment](./docs/img/rolling-deployment.gif)
 
+>A rolling deployment waits for new pods to become ready via a [readiness check](https://docs.openshift.com/container-platform/4.5/applications/application-health.html) before scaling down the old components. 
+
 **You can demonstrate the default load balancing strategy**
 
 ```shell
