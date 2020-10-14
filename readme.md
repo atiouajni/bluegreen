@@ -1,8 +1,5 @@
 
 # Introduction
-
-  
-
 Bluegreeen is a simple application based on multiple languages (only php for now) to demonstrate how it's easy to deploy an application in OpenShift Container Platform (OCP).
 
 After completing this tutorial you will be able to accomplish the following tasks:
