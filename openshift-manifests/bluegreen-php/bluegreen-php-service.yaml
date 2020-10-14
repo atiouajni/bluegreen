@@ -4,7 +4,6 @@ metadata:
   labels:
     app: bluegreen
   name: bluegreen
-  namespace: bluegreen
 spec:
   ports:
   - name: 8080-tcp

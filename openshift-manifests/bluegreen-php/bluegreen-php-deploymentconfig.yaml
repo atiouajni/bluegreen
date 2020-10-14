@@ -4,8 +4,6 @@ metadata:
   generation: 5
   labels:
     app: bluegreen
-  name: bluegreen
-  namespace: bluegreen
 spec:
   replicas: 1
   selector:

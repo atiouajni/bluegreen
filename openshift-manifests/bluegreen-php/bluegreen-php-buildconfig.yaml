@@ -4,7 +4,6 @@ metadata:
   name: bluegreen
   labels:
     app: bluegreen
-  namespace: bluegreen
 spec:
   failedBuildsHistoryLimit: 5
   output:
