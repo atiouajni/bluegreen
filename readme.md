@@ -54,7 +54,7 @@ oc apply -f openshift-manifests/bluegreen-php/
 **4 - Check building and deploying stages**
 
 ```shell
-oc get pods -w
+oc get pods -n bluegreen -w
 ```
 
 **5 - Access the bluegreen app**    
