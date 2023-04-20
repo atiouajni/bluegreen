@@ -1,1 +1,2 @@
-<?php echo 'Handled by ' .$_ENV["HOSTNAME"] ;?>
+<?php echo "Handled by " . gethostname();?>
+
