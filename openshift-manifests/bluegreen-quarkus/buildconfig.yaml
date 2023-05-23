@@ -1,0 +1,29 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: bluegreen-quarkus
+  labels:
+    app: bluegreen-quarkus
+spec:
+  failedBuildsHistoryLimit: 5
+  output:
+    to:
+      kind: ImageStreamTag
+      name: bluegreen-quarkus:latest
+  runPolicy: Serial
+  source:
+    contextDir: src/bluegreen-quarkus
+    git:
+      uri: https://github.com/atiouajni/bluegreen
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: openjdk-17:latest
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+  - imageChange:
+    type: ImageChange

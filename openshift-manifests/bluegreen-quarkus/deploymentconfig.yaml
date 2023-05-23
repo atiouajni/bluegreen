@@ -1,0 +1,40 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  generation: 5
+  labels:
+    app: bluegreen-quarkus
+  name: bluegreen-quarkus
+spec:
+  replicas: 1
+  selector:
+    app: bluegreen-quarkus
+    deploymentconfig: bluegreen-quarkus
+  strategy:
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        app: bluegreen-quarkus
+        deploymentconfig: bluegreen-quarkus
+    spec:
+      containers:
+      - name: bluegreen-quarkus
+        image: bluegreen-quarkus:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081
+          protocol: TCP
+        env:
+        - name: quarkus.http.port
+          value: 8081
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - bluegreen-quarkus
+      from:
+        kind: ImageStreamTag
+        name: bluegreen-quarkus:latest
+    type: ImageChange
