@@ -5,6 +5,8 @@ import java.net.UnknownHostException;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("/")
 public class HandlerResource {
@@ -16,6 +18,7 @@ public class HandlerResource {
 	 * @throws UnknownHostException
 	 */
 	@GET
+	@Produces(MediaType.TEXT_PLAIN)
 	public String getHostname() throws UnknownHostException {
 
 		return "Handled by "+ InetAddress.getLocalHost().getHostName();

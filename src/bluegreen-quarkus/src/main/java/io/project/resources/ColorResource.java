@@ -3,6 +3,8 @@ package io.project.resources;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("/color")
 public class ColorResource {
@@ -16,6 +18,7 @@ public class ColorResource {
 	 * @return String color
 	 */
 	@GET
+	@Produces(MediaType.TEXT_PLAIN)
 	public String getColor() {
 		String color = "blue";
 		if("green".equals(imageColor)) {
