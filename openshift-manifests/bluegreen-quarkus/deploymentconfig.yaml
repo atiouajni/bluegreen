@@ -27,7 +27,7 @@ spec:
           protocol: TCP
         env:
         - name: quarkus.http.port
-          value: 8081
+          value: '8081'
   triggers:
   - type: ConfigChange
   - imageChangeParams:
