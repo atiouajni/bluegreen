@@ -18,6 +18,7 @@ After completing this tutorial you will be able to accomplish the following task
 | Service name | Language | Description |
 |:--:|:--:|:--|
 | bluegreen | php | Provide a colorful image through HTTP depending on environment variable|
+| bluegreen-quarkus | Java Quarkus | Provide a colorful image through HTTP depending on environment variable|
 
 # Requirements
 
@@ -30,14 +31,13 @@ No setup is needed to run bluegreen application alone. Il you want to add other 
 
 # Installation
 In this section, if a new feature requires an installation procedure, it will be included in a different paragraph.
-## I - Installing bluegreen application
+## I - Installing bluegreen application (PHP version)
 **1 - Clone the project**
 
 ```shell
 git clone https://github.com/atiouajni/bluegreen
 cd bluegreen
  ```
-
 
 **2 - Create a new Openshift project**
 
@@ -68,6 +68,26 @@ curl -o /dev/null -s -w "%{http_code}\n" http://$BLUEGREEN_URL/image.php
 ```
 
 >Well done ! At this stage, you are able to demonstrate many OpenShift features. Please check the [#Usage](#Usage) section before going ahead. 
+
+## II - Installing bluegreen application (Quarkus framework version)
+
+```shell
+git clone https://github.com/atiouajni/bluegreen
+
+cd bluegreen
+
+oc new-project bluegreen
+
+oc import-image ubi8/openjdk-17 --from=registry.access.redhat.com/ubi8/openjdk-17 --confirm
+
+oc apply -f openshift-manifests/bluegreen-quarkus/
+
+oc get pods -n bluegreen -w
+
+export BLUEGREEN_URL=$(oc get route bluegreen -o jsonpath='{.spec.host}')
+
+echo $BLUEGREEN_URL
+```
 
 # Usage
 ## Once the application is deployed
@@ -137,4 +157,4 @@ More details will be found in ./docs folder.
 
 # Released versions
 
-In progress...
+oc import-image ubi8/openjdk-17 --from=registry.access.redhat.com/ubi8/openjdk-17 --confirm
