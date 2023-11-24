@@ -9,7 +9,7 @@ if ( $deployment == 'blue') {
   $color = 'blue';
 }
 
-$data = [ 'color' => $deployment ];
+$data = [ 'color' => $color ];
 echo json_encode( $data );
 http_response_code(200);
 ?>
